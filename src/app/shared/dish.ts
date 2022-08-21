@@ -8,4 +8,5 @@ export class Dish
     label:string;
     price:string;
     description:string;
+    comments:string;
 }
