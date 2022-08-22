@@ -25,42 +25,16 @@
 
   </div>
 
-  <div fxFlex="40" rowHeight="200px" *ngFor="let commit of commits">
+  <div fxFlex="40">
  <h3>Comments</h3>
-<mat-list>
-  <mat-list-item >
-    <p matLine> {{commit.comments[0].comment}} </p>
-    <p matLine>{{commit.comments[0].rating}} stars</p>
-    <p matLine>--{{commit.comments[0].author}}{{commit.comments[0].date | date}}</p>
+<mat-list *ngIf="dish">
+  <mat-list-item *ngFor="let com of dish.comments">
+    <h4 matLine> {{com.comment}} </h4>
+    <p matLine>{{com.rating}} Stars</p>
+    <p matLine>
+      <span>-- {{com.author}} {{com.date | date}}</span>
+    </p>
   </mat-list-item>
-
-  <mat-list-item >
-    <p matLine> {{commit.comments[1].comment}} </p>
-    <p matLine>{{commit.comments[1].rating}} stars</p>
-    <p matLine>--{{commit.comments[1].author}}{{commit.comments[0].date | date}}</p>
-  </mat-list-item>
-
-
-  <mat-list-item >
-    <p matLine> {{commit.comments[2].comment}} </p>
-    <p matLine>{{commit.comments[2].rating}} stars</p>
-    <p matLine>--{{commit.comments[2].author}}{{commit.comments[0].date | date}}</p>
-  </mat-list-item>
-
-
-  <mat-list-item >
-    <p matLine> {{commit.comments[3].comment}} </p>
-    <p matLine>{{commit.comments[3].rating}} stars</p>
-    <p matLine>--{{commit.comments[3].author}}{{commit.comments[0].date | date}}</p>
-  </mat-list-item>
-
-
-  <mat-list-item >
-    <p matLine> {{commit.comments[4].comment}} </p>
-    <p matLine>{{commit.comments[4].rating}} stars</p>
-    <p matLine>--{{commit.comments[4].author}}{{commit.comments[0].date | date}}</p>
-  </mat-list-item>
-  
 </mat-list>
   </div>
 
