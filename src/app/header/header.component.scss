@@ -14,3 +14,7 @@ $background-pale: #D1C4E9;
     color:floralwhite;
     min-height: 150px;
 }
+$background-moredark: #4527A0;
+.active {
+    background: $background-moredark;
+}
