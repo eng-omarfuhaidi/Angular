@@ -8,7 +8,8 @@ export class PromotionService {
 
   constructor() { }
 
-  getPromotions(): Promotion[] {
+  getPromotions(): Promotion[] 
+  {
     return PROMOTIONS;
   }
 
