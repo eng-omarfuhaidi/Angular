@@ -30,6 +30,8 @@ contactType=ContactType;
       contacttype:'None',
       message:''
     });
+
+    
   }
   onSubmit() {
     this.feedback = this.feedbackForm.value;
@@ -47,3 +49,5 @@ contactType=ContactType;
   }
 
 }
+
+
