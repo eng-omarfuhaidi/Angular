@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild ,Inject } from '@angular/core';
 import { Params,ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
@@ -41,13 +41,14 @@ validationMessages=
 };
 
   constructor(private dishService:DishService,private rout:ActivatedRoute,
-    private location:Location,private fb:FormBuilder) 
+    private location:Location,private fb:FormBuilder,@Inject('BaseURL') private BaseURL) 
   {
 
-    this.creatForm();
+    
    }
   ngOnInit() 
   {
+    this.creatForm();
     this.dishService.getDishIds().subscribe((dishIds)=>this.dishIds=dishIds);
     this.rout.params.pipe(switchMap((params:Params)=>this.dishService.getDish(params['id'])))
     .subscribe(dish=>{this.dish=dish;this.setPrevNext(dish.id);});

@@ -18,6 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
@@ -35,6 +36,8 @@ import { LeaderService } from './services/leader.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 
+import { baseURL } from './shared/baseurl';
+import { USE_VALUE } from '@angular/core/src/di/injector';
 
 @NgModule({
   declarations: [
@@ -67,12 +70,14 @@ import { LoginComponent } from './login/login.component';
     MatSelectModule,
     MatSlideToggleModule,
     MatSliderModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule
   ],
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide:'BaseURL',useValue:baseURL}
   ],
   entryComponents:
   [
