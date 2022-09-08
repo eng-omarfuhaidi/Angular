@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
  dishIds:string[];
  prev:string;
  next:string;
+ dishcopy:Dish;
   Date = new Date("2017-04-13");
   DateToString = this.Date.toISOString();
  @ViewChild ('fform') feedbackFormDirective;
@@ -52,7 +53,7 @@ validationMessages=
     this.creatForm();
     this.dishService.getDishIds().subscribe((dishIds)=>this.dishIds=dishIds);
     this.rout.params.pipe(switchMap((params:Params)=>this.dishService.getDish(params['id'])))
-    .subscribe(dish=>{this.dish=dish;this.setPrevNext(dish.id);},errormess => this.errMess = <any> errormess);
+    .subscribe(dish=>{this.dish=dish;this.dishcopy=dish; this.setPrevNext(dish.id);},errormess => this.errMess = <any> errormess);
   
   }
 
@@ -100,14 +101,22 @@ validationMessages=
 
   onSubmit() {
     this.comment = this.commentForm.value;
+    this.comment.date=this.DateToString;
     console.log(this.comment);
-    DISHES[this.dish.id].comments.push({
-      "rating" :this.commentForm.value.rating,
-      "comment" :this.commentForm.value.comment,
-      "author" :this.commentForm.value.author,
-      "date" :this.DateToString
-    })
+    this.dishcopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishcopy)
+    .subscribe(dish=>
+      {
+        this.dish=dish;this.dishcopy=dish;
+      },errmess=>{this.dish=null;this.dishcopy=null;this.errMess=<any>errmess});
     this.feedbackFormDirective.resetForm();
+    this.commentForm.reset(
+      {
+        author: '',
+        rating: 5,
+        comment: ''
+      });
+  
   }
 
 
